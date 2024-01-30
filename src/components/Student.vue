@@ -12,9 +12,15 @@ export default {
 </script>
 
 <template>
-  <div class="School">
+  <div class="demo">
     <h2>学生姓名：{{ name }}</h2>
     <h2>学生性别：{{ sex }}</h2>
     <h2></h2>
   </div>
 </template>
+
+<style lang="css" scoped>
+.demo{
+  background-color: orange;
+}
+</style>

@@ -180,3 +180,18 @@ Vue.use(plugins)
 功能：增强Vue
 
 本质：包含install方法的一个对象，第一个参数是Vue，第二个以后的参数是插件使用者传递的数据
+
+## 6.scoped样式
+
+```vue
+<style scoped>
+
+</style>
+```
+
+局部作用域
+
+样式在局部生效
+
+防止冲突
+
