@@ -118,3 +118,39 @@ props: {
 ```
 
 > 备注：props是只读的，Vue底层会监测你对props的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制props的内容到data中一份，然后去修改data中的数据。
+
+## 4.mixin混入（合）
+
+局部混合
+
+```js
+export const mixin = {
+    methods: {
+        showName()
+        {
+            alert(this.name);
+        }
+    }
+}
+```
+
+```vue
+//引入一个混合
+import {mixin} from '@/mixin'
+```
+
+再写配置
+
+```vue
+mixins: [mixin]
+```
+
+
+
+全局混合
+
+```js
+Vue.mixin(xxx)
+```
+
+在main.js中引入与混合
