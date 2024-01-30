@@ -154,3 +154,29 @@ Vue.mixin(xxx)
 ```
 
 在main.js中引入与混合
+
+## 5.插件
+
+定义插件
+
+```js
+const obj = {
+    install(){
+        console.log('@@@install')
+    }
+}
+export default obj;
+```
+
+使用插件
+```js
+//引入插件
+import plugins from './plugins'
+
+//应用插件
+Vue.use(plugins)
+```
+
+功能：增强Vue
+
+本质：包含install方法的一个对象，第一个参数是Vue，第二个以后的参数是插件使用者传递的数据
