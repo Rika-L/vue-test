@@ -1,26 +1,15 @@
 <script>
-import School from './components/School.vue'
+import Student from './components/Student.vue'
 
 export default {
   name: 'App',
-  components: {School},
-  data() {
-    return {
-      msg: '欢迎学习Vue',
-    }
-  },
-  methods:{
-    showDom(){
-      console.log(this.$refs)
-    }
-  }
+  components: {Student},
 }
 </script>
 
 <template>
   <div>
-    <h1 v-text="msg" ref="title"></h1>
-    <button @click="showDom">点我输出上方的DOM元素</button>
-    <school/>
+    <student name="李四" sex="女" age="18"/>
+    <student name="王老五" sex="男" age="20"/>
   </div>
 </template>

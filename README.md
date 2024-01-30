@@ -68,3 +68,53 @@ vue.config.js
 
    
 
+## 3-props属性
+
+功能：让组件接收外部传过来的数据
+
+传递数据：
+
+```vue
+<student name="李四" sex="女" :age="18"/>
+```
+
+接收数据：
+
+三个方法：
+
+1. 简单方法,仅接收
+
+```vue
+props:['name', 'sex', 'age'],
+```
+
+2. 接收的同时限制类型
+
+```vue
+props: {
+  name: String,
+  age: Number,
+  sex: String,
+}
+```
+
+3.接收的同时限制类型,默认值指定,必要性限制
+
+```
+props: {
+  name: {
+    type: String,//类型是字符串
+    required: true,//name是必要的
+  },
+  age: {
+    type: Number,
+    default: 99,//默认值
+  },
+  sex: {
+    type: String,
+    required: true,
+  }
+}
+```
+
+> 备注：props是只读的，Vue底层会监测你对props的修改，如果进行了修改，就会发出警告，若业务需求确实需要修改，那么请复制props的内容到data中一份，然后去修改data中的数据。
