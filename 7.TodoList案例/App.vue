@@ -12,7 +12,23 @@ export default {
   },
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem('todos')) || []
+      todos: [
+        {
+          id: '001',
+          title: '吃饭',
+          done: true,
+        },
+        {
+          id: '002',
+          title: '睡觉',
+          done: true,
+        },
+        {
+          id: '003',
+          title: '喝酒',
+          done: false,
+        },
+      ]
     }
   },
   methods: {
@@ -39,18 +55,10 @@ export default {
       })
     },
     //清除完成的todo
-    clearAllTodo() {
-      this.todos = this.todos.filter((todo) => {
+    clearAllTodo(){
+      this.todos = this.todos.filter((todo)=>{
         return !todo.done
       })
-    }
-  },
-  watch: {
-    todos: {
-      deep:true,
-      handler(value) {
-        localStorage.setItem('todos', JSON.stringify(value));
-      }
     }
   }
 }
