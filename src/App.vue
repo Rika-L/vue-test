@@ -1,116 +1,48 @@
 <script>
-import UserHeader from "@/components/UserHeader.vue";
-import UserList from "@/components/UserList.vue";
-import UserFooter from "@/components/UserFooter.vue";
+import Student from './components/Student.vue'
+import School from './components/School.vue'
 
 export default {
   name: 'App',
-  components: {
-    UserFooter,
-    UserHeader,
-    UserList,
-  },
+  components: {School, Student},
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem('todos')) || []
+      msg: '你好呀',
     }
   },
   methods: {
-    //添加todo
-    addTodo(todo) {
-      this.todos.unshift(todo)
+    getSchoolName(name) {
+      alert(name)
     },
-    //勾选或取消勾选
-    checkTodo(id) {
-      this.todos.forEach((todo) => {
-        if (todo.id === id) {
-          todo.done = !todo.done
-        }
-      })
+    getStudentName(name) {
+      alert(name)
     },
-    //删除
-    deleteTodo(id) {
-      this.todos = this.todos.filter((todo) => todo.id !== id)
-    },
-    //全选或全不选
-    checkAllTodo(done) {
-      this.todos.forEach((todo) => {
-        todo.done = done
-      })
-    },
-    //清除完成的todo
-    clearAllTodo() {
-      this.todos = this.todos.filter((todo) => {
-        return !todo.done
-      })
+    m1(){
+      console.log('demo事件被出发了');
     }
   },
-  watch: {
-    todos: {
-      deep:true,
-      handler(value) {
-        localStorage.setItem('todos', JSON.stringify(value));
-      }
-    }
+  mounted() {
+    this.$refs.student.$on('rika', this.getStudentName)
   }
 }
 </script>
 
 <template>
-  <div id="root">
-    <div class="todo-container">
-      <div class="todo-wrap">
-        <UserHeader :addTodo="addTodo"></UserHeader>
-        <UserList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></UserList>
-        <UserFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"></UserFooter>
-      </div>
-    </div>
+  <div class="app">
+    <h1>{{ msg }}</h1>
+    <!--    通过父组件给子组件传递函数类型的props实现:子给父传数据-->
+    <school :getSchoolName="getSchoolName"/>
+    <hr>
+    <!--    通过父组件给子组件绑定一个自定义事件实现:子给父传数据(第一种写法,使用v-on)-->
+    <student @rika="getStudentName" @demo="m1"/>
+    <!--    通过父组件给子组件绑定一个自定义事件实现:子给父传数据(第二种写法,使用ref)-->
+    <student ref='student'/>
   </div>
-
 </template>
 
 <style>
-body {
-  background: #fff;
+.app {
+  background-color: #dddddd;
+  padding: 5px;
 }
-
-.btn {
-  display: inline-block;
-  padding: 4px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-
-.btn-danger {
-  color: #fff;
-  background-color: #da4f49;
-  border: 1px solid #bd362f;
-}
-
-.btn-danger:hover {
-  color: #fff;
-  background-color: #bd362f;
-}
-
-.btn:focus {
-  outline: none;
-}
-
-.todo-container {
-  width: 600px;
-  margin: 0 auto;
-}
-
-.todo-container .todo-wrap {
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
 </style>
