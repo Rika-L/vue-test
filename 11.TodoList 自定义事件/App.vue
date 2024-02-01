@@ -47,19 +47,11 @@ export default {
   },
   watch: {
     todos: {
-      deep: true,
+      deep:true,
       handler(value) {
         localStorage.setItem('todos', JSON.stringify(value));
       }
     }
-  },
-  mounted() {
-    this.$bus.$on('checkTodo', this.checkTodo)
-    this.$bus.$on('deleteTodo', this.deleteTodo)
-  },
-  beforeDestroy() {
-    this.$bus.$off('checkTodo');
-    this.$bus.$off('deleteTodo');
   }
 }
 </script>
@@ -69,7 +61,7 @@ export default {
     <div class="todo-container">
       <div class="todo-wrap">
         <UserHeader @addTodo="addTodo"></UserHeader>
-        <UserList :todos="todos"></UserList>
+        <UserList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"></UserList>
         <UserFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"></UserFooter>
       </div>
     </div>
