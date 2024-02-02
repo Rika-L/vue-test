@@ -24,11 +24,11 @@ h1 {
 }
 
 .hello-enter-active{
-  animation: rika 0.5s;
+  animation: rika 0.5s linear;
 }
 
 .hello-leave-active{
-  animation: rika 0.5s reverse;
+  animation: rika 0.5s linear reverse;
 }
 
 @keyframes rika {
