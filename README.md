@@ -4,7 +4,7 @@
 
 ```js
 new Vue({
-  render: h => h(App),
+    render: h => h(App),
 })
 ```
 
@@ -66,8 +66,6 @@ vue.config.js
    this.$refs.xxx
    ```
 
-   
-
 ## 3-props属性
 
 功能：让组件接收外部传过来的数据
@@ -75,6 +73,7 @@ vue.config.js
 传递数据：
 
 ```vue
+
 <student name="李四" sex="女" :age="18"/>
 ```
 
@@ -92,9 +91,9 @@ props:['name', 'sex', 'age'],
 
 ```vue
 props: {
-  name: String,
-  age: Number,
-  sex: String,
+name: String,
+age: Number,
+sex: String,
 }
 ```
 
@@ -126,8 +125,7 @@ props: {
 ```js
 export const mixin = {
     methods: {
-        showName()
-        {
+        showName() {
             alert(this.name);
         }
     }
@@ -145,8 +143,6 @@ import {mixin} from '@/mixin'
 mixins: [mixin]
 ```
 
-
-
 全局混合
 
 ```js
@@ -161,7 +157,7 @@ Vue.mixin(xxx)
 
 ```js
 const obj = {
-    install(){
+    install() {
         console.log('@@@install')
     }
 }
@@ -169,6 +165,7 @@ export default obj;
 ```
 
 使用插件
+
 ```js
 //引入插件
 import plugins from './plugins'
@@ -184,6 +181,7 @@ Vue.use(plugins)
 ## 6.scoped样式
 
 ```vue
+
 <style scoped>
 
 </style>
@@ -199,21 +197,21 @@ Vue.use(plugins)
 
 1. 组件化编码流程：
 
-    ​	(1).拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突。
+   ​    (1).拆分静态组件：组件要按照功能点拆分，命名不要与html元素冲突。
 
-    ​	(2).实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件在用：
+   ​    (2).实现动态组件：考虑好数据的存放位置，数据是一个组件在用，还是一些组件在用：
 
-    ​			1).一个组件在用：放在组件自身即可。
+    1).一个组件在用：放在组件自身即可。
 
-    ​			2). 一些组件在用：放在他们共同的父组件上（<span style="color:red">状态提升</span>）。
+    2). 一些组件在用：放在他们共同的父组件上（<span style="color:red">状态提升</span>）。
 
-    ​	(3).实现交互：从绑定事件开始。
+   ​    (3).实现交互：从绑定事件开始。
 
 2. props适用于：
 
-    ​	(1).父组件 ==> 子组件 通信
+   ​    (1).父组件 ==> 子组件 通信
 
-    ​	(2).子组件 ==> 父组件 通信（要求父先给子一个函数）
+   ​    (2).子组件 ==> 父组件 通信（要求父先给子一个函数）
 
 3. 使用v-model时要切记：v-model绑定的值不能是props传过来的值，因为props是不可以修改的！
 
@@ -228,19 +226,19 @@ Vue.use(plugins)
 3. 相关API：
 
     1. ```xxxxxStorage.setItem('key', 'value');```
-        			该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值。
+       该方法接受一个键和值作为参数，会把键值对添加到存储中，如果键名存在，则更新其对应的值。
 
     2. ```xxxxxStorage.getItem('person');```
 
-        该方法接受一个键名作为参数，返回键名对应的值。
+       该方法接受一个键名作为参数，返回键名对应的值。
 
     3. ```xxxxxStorage.removeItem('key');```
 
-        该方法接受一个键名作为参数，并把该键名从存储中删除。
+       该方法接受一个键名作为参数，并把该键名从存储中删除。
 
     4. ``` xxxxxStorage.clear()```
 
-        该方法会清空存储中的所有数据。
+       该方法会清空存储中的所有数据。
 
 4. 备注：
 
@@ -253,7 +251,8 @@ Vue.use(plugins)
 
 1. 一种组件间通信的方式，适用于：<strong style="color:red">子组件 ===> 父组件</strong>
 
-2. 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件（<span style="color:red">事件的回调在A中</span>）。
+2. 使用场景：A是父组件，B是子组件，B想给A传数据，那么就要在A中给B绑定自定义事件（<span style="color:red">
+   事件的回调在A中</span>）。
 
 3. 绑定自定义事件：
 
@@ -271,17 +270,18 @@ Vue.use(plugins)
 
     3. 若想让自定义事件只能触发一次，可以使用```once```修饰符，或```$once```方法。
 
-4. 触发自定义事件：```this.$emit('atguigu',数据)```		
+4. 触发自定义事件：```this.$emit('atguigu',数据)```
 
 5. 解绑自定义事件```this.$off('atguigu')```
 
 6. 组件上也可以绑定原生DOM事件，需要使用```native```修饰符。
 
-7. 注意：通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调<span style="color:red">要么配置在methods中</span>，<span style="color:red">要么用箭头函数</span>，否则this指向会出问题！
+7. 注意：通过```this.$refs.xxx.$on('atguigu',回调)```绑定自定义事件时，回调<span style="color:red">
+   要么配置在methods中</span>，<span style="color:red">要么用箭头函数</span>，否则this指向会出问题！
 
 ## 10.全局事件总线
 
-任意组件间通信 
+任意组件间通信
 
 ![c8c58db62b6e7ac8a920890ab910925](D:\wechatfile\WeChat Files\wxid_0z1kzagu3rpg22\FileStorage\Temp\c8c58db62b6e7ac8a920890ab910925.jpg)
 
@@ -301,19 +301,19 @@ Vue.use(plugins)
 
 3. 使用事件总线：
 
-   1. 接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的<span style="color:red">回调留在A组件自身。</span>
+    1. 接收数据：A组件想接收数据，则在A组件中给$bus绑定自定义事件，事件的<span style="color:red">回调留在A组件自身。</span>
 
-      ```js
-      methods(){
-        demo(data){......}
-      }
-      ......
-      mounted() {
-        this.$bus.$on('xxxx',this.demo)
-      }
-      ```
+       ```js
+       methods(){
+         demo(data){......}
+       }
+       ......
+       mounted() {
+         this.$bus.$on('xxxx',this.demo)
+       }
+       ```
 
-   2. 提供数据：```this.$bus.$emit('xxxx',数据)```
+    2. 提供数据：```this.$bus.$emit('xxxx',数据)```
 
 4. 最好在beforeDestroy钩子中，用$off去解绑<span style="color:red">当前组件所用到的</span>事件。
 
@@ -329,23 +329,116 @@ Vue.use(plugins)
 
 2. 写法：
 
-   1. 准备好样式：
+    1. 准备好样式：
 
-      - 元素进入的样式：
-        1. v-enter：进入的起点
-        2. v-enter-active：进入过程中
-        3. v-enter-to：进入的终点
-      - 元素离开的样式：
-        1. v-leave：离开的起点
-        2. v-leave-active：离开过程中
-        3. v-leave-to：离开的终点
+        - 元素进入的样式：
+            1. v-enter：进入的起点
+            2. v-enter-active：进入过程中
+            3. v-enter-to：进入的终点
+        - 元素离开的样式：
+            1. v-leave：离开的起点
+            2. v-leave-active：离开过程中
+            3. v-leave-to：离开的终点
 
-   2. 使用```<transition>```包裹要过度的元素，并配置name属性：
+    2. 使用```<transition>```包裹要过度的元素，并配置name属性：
 
-      ```vue
-      <transition name="hello">
-      	<h1 v-show="isShow">你好啊！</h1>
-      </transition>
-      ```
+       ```vue
+       <transition name="hello">
+           <h1 v-show="isShow">你好啊！</h1>
+       </transition>
+       ```
 
-   3. 备注：若有多个元素需要过度，则需要使用：```<transition-group>```，且每个元素都要指定```key```值。
+    3. 备注：若有多个元素需要过度，则需要使用：```<transition-group>```，且每个元素都要指定```key```值。
+
+## 插槽
+
+1. 作用：让父组件可以向子组件指定位置插入html结构，也是一种组件间通信的方式，适用于 <strong style="color:red">父组件 ===>
+   子组件</strong> 。
+
+2. 分类：默认插槽、具名插槽、作用域插槽
+
+3. 使用方式：
+
+    1. 默认插槽：
+
+       ```vue
+       父组件中：
+               <Category>
+                  <div>html结构1</div>
+               </Category>
+       子组件中：
+               <template>
+                   <div>
+                      <!-- 定义插槽 -->
+                      <slot>插槽默认内容...</slot>
+                   </div>
+               </template>
+       ```
+
+    2. 具名插槽：
+
+       ```vue
+       父组件中：
+               <Category>
+                   <template slot="center">
+                     <div>html结构1</div>
+                   </template>
+       
+                   <template v-slot:footer>
+                      <div>html结构2</div>
+                   </template>
+               </Category>
+       子组件中：
+               <template>
+                   <div>
+                      <!-- 定义插槽 -->
+                      <slot name="center">插槽默认内容...</slot>
+                      <slot name="footer">插槽默认内容...</slot>
+                   </div>
+               </template>
+       ```
+
+    3. 作用域插槽：
+
+        1. 理解：<span style="color:red">数据在组件的自身，但根据数据生成的结构需要组件的使用者来决定。</span>
+           （games数据在Category组件中，但使用数据所遍历出来的结构由App组件决定）
+
+        2. 具体编码：
+
+           ```vue
+           父组件中：
+                   <Category>
+                       <template scope="scopeData">
+                           <!-- 生成的是ul列表 -->
+                           <ul>
+                               <li v-for="g in scopeData.games" :key="g">{{g}}</li>
+                           </ul>
+                       </template>
+                   </Category>
+           
+                   <Category>
+                       <template slot-scope="scopeData">
+                           <!-- 生成的是h4标题 -->
+                           <h4 v-for="g in scopeData.games" :key="g">{{g}}</h4>
+                       </template>
+                   </Category>
+           子组件中：
+                   <template>
+                       <div>
+                           <slot :games="games"></slot>
+                       </div>
+                   </template>
+                   
+                   <script>
+                       export default {
+                           name:'Category',
+                           props:['title'],
+                           //数据在子组件自身
+                           data() {
+                               return {
+                                   games:['红色警戒','穿越火线','劲舞团','超级玛丽']
+                               }
+                           }, 
+                       }
+                   </script>
+           ```

@@ -1,5 +1,6 @@
 <script>
-import {nanoid} from 'nanoid'
+import {nanoid} from 'nanoid';
+import 'animate.css';
 
 export default {
   name: 'UserHeader',
