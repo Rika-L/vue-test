@@ -1,5 +1,5 @@
 <script>
-import '@/static/plugins/bootstrap-3.4.1/css/bootstrap.css'
+import '../static/plugins/bootstrap-3.4.1/css/bootstrap.css'
 import Search from "@/components/SearchUser.vue";
 import User from "@/components/UserList.vue";
 
