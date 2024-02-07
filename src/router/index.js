@@ -7,7 +7,7 @@ import Message from "@/pages/Message.vue";
 import Detail from "@/pages/Detail.vue";
 
 //创建一个路由器
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         {
             path: '/about',
@@ -41,7 +41,7 @@ export default new VueRouter({
                             // props: true,
 
                             //第三种写法，值为函数
-                            props($route){
+                            props($route) {
                                 return {
                                     id: $route.query.id,
                                     title: $route.query.title,
@@ -54,3 +54,11 @@ export default new VueRouter({
         },
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (localStorage.getItem('school') === 'wyu') {
+        next();
+    }
+})
+
+export default router
